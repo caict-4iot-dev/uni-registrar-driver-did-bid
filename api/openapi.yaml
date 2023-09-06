@@ -1,0 +1,248 @@
+openapi: 3.0.0
+info:
+  title: Universal Registrar Driver
+  description: Universal Registrar Driver
+  contact:
+    email: guoshijie@caict.ac.cn
+  version: 1.0.0
+servers:
+  - url: /1.0/
+paths:
+  /create:
+    post:
+      summary: Creates a DID.
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRequest'
+      responses:
+        "200":
+          description: successfully createed!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateState'
+        "400":
+          description: invalid input!
+        "500":
+          description: error!
+      x-swagger-router-controller: Default
+  /update:
+    post:
+      summary: Updates a DID.
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRequest'
+      responses:
+        "200":
+          description: successfully updated!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateState'
+        "400":
+          description: invalid input!
+        "500":
+          description: error!
+      x-swagger-router-controller: Default
+  /deactivate:
+    post:
+      summary: Deactivates a DID.
+      operationId: deactivate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeactivateRequest'
+      responses:
+        "200":
+          description: successfully deactivated!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeactivateState'
+        "400":
+          description: invalid input!
+        "500":
+          description: error!
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    CreateRequest:
+      type: object
+      properties:
+        jobId:
+          type: string
+          example: 6d85bcd0-2ea3-4288-ab00-15afadd8a156
+        options:
+          type: object
+          example:
+            chain: TESTNET
+            keyType: Ed25519
+        secret:
+          type: object
+        didDocument:
+          type: object
+      additionalProperties: false
+      description: Request parameters for the create operation.
+    UpdateRequest:
+      required:
+        - identifier
+      type: object
+      properties:
+        jobId:
+          type: string
+          example: 6d85bcd0-2ea3-4288-ab00-15afadd8a156
+        identifier:
+          type: string
+          example: did:bid:ef7zyvBtyg22NC4qDHwehMJxeqw6Mmrh
+        options:
+          type: object
+          example:
+            chain: TESTNET
+        secret:
+          type: object
+        didDocument:
+          type: object
+      additionalProperties: false
+      description: Request parameters for the update operation.
+    DeactivateRequest:
+      required:
+        - identifier
+      type: object
+      properties:
+        jobId:
+          type: string
+          example: 6d85bcd0-2ea3-4288-ab00-15afadd8a156
+        identifier:
+          type: string
+          example: did:bid:ef7zyvBtyg22NC4qDHwehMJxeqw6Mmrh
+        options:
+          type: object
+          example:
+            chain: TESTNET
+        secret:
+          type: object
+      additionalProperties: false
+      description: Request parameters for the deactivate operation.
+    CreateState:
+      required:
+        - didState
+      type: object
+      properties:
+        jobId:
+          type: string
+          example: 6d85bcd0-2ea3-4288-ab00-15afadd8a156
+        didState:
+          $ref: '#/components/schemas/CreateState_didState'
+        registrarMetadata:
+          type: object
+        methodMetadata:
+          type: object
+      additionalProperties: false
+      description: The state after a create operation.
+      example:
+        jobId: 6d85bcd0-2ea3-4288-ab00-15afadd8a156
+        didState:
+          identifier: did:bid:ef7zyvBtyg22NC4qDHwehMJxeqw6Mmrh
+          state: finished
+          chain: TESTNET
+          secret:
+            keys:
+                type: Ed25519
+                privateKey: priSPKtGyLpAD5ouCeD2xQjFpNKFac5VTz6sroQnXBjBLBvsDn
+                publicKey: b065660544d79836e8d113fe3d075ee91c143d2c99986d1363a623788c0bdba84c4a00
+        methodMetadata: {}
+        registrarMetadata: {}
+    UpdateState:
+      required:
+        - didState
+      type: object
+      properties:
+        jobId:
+          type: string
+          example: 6d85bcd0-2ea3-4288-ab00-15afadd8a156
+        didState:
+          $ref: '#/components/schemas/UpdateState_didState'
+        registrarMetadata:
+          type: object
+        methodMetadata:
+          type: object
+      additionalProperties: false
+      description: The state after an update operation.
+      example:
+        jobId: 6d85bcd0-2ea3-4288-ab00-15afadd8a156
+        didState:
+          state: state
+          secret: {}
+        methodMetadata: {}
+        registrarMetadata: {}
+    DeactivateState:
+      required:
+        - didState
+      type: object
+      properties:
+        jobId:
+          type: string
+          example: 6d85bcd0-2ea3-4288-ab00-15afadd8a156
+        didState:
+          $ref: '#/components/schemas/DeactivateState_didState'
+        registrarMetadata:
+          type: object
+        methodMetadata:
+          type: object
+      additionalProperties: false
+      description: The state after a deactivate operation.
+      example:
+        jobId: 6d85bcd0-2ea3-4288-ab00-15afadd8a156
+        didState:
+          state: state
+        methodMetadata: {}
+        registrarMetadata: {}
+    CreateState_didState:
+      type: object
+      properties:
+        state:
+          type: string
+          example: finished
+        identifier:
+          type: string
+          example: did:bid:ef7zyvBtyg22NC4qDHwehMJxeqw6Mmrh
+        secret:
+          type: object
+          example:
+            keys:
+                type: Ed25519
+                privateKey: priSPKtGyLpAD5ouCeD2xQjFpNKFac5VTz6sroQnXBjBLBvsDn
+                publicKey: b065660544d79836e8d113fe3d075ee91c143d2c99986d1363a623788c0bdba84c4a00
+      example:
+        identifier: did:bid:ef7zyvBtyg22NC4qDHwehMJxeqw6Mmrh
+        state: finished
+        chain: TESTNET
+        secret:
+          keys:
+              type: Ed25519
+              privateKey: priSPKtGyLpAD5ouCeD2xQjFpNKFac5VTz6sroQnXBjBLBvsDn
+              publicKey: b065660544d79836e8d113fe3d075ee91c143d2c99986d1363a623788c0bdba84c4a00
+    UpdateState_didState:
+      type: object
+      properties:
+        state:
+          type: string
+        secret:
+          type: object
+      example:
+        state: state
+        secret: {}
+    DeactivateState_didState:
+      type: object
+      properties:
+        state:
+          type: string
+      example:
+        state: state

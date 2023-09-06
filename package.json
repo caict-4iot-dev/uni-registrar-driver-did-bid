@@ -1,0 +1,22 @@
+{
+  "name": "uni-registrar-driver-did-bid",
+  "version": "1.0.0",
+  "description": "Bid Universal Registrar Driver",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "3.7.0",
+    "js-yaml": "4.1.0",
+    "oas3-tools": "2.0.2",
+    "brdc-sjcl": "^1.0.9",
+    "brdc-sm-crypto": "^0.3.7"
+  }
+}
