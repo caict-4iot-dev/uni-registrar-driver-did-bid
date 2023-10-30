@@ -2,7 +2,7 @@
 
 # Universal Registrar Driver: bid
 
-This is a  [Universal Registrar](https://github.com/decentralized-identity/universal-registrar/) driver for  **did:bid** identifiers.
+This is a  [Universal Registrar](https://hub.docker.com/repository/docker/caictdevelop/uni-registrar-driver-did-bid/) driver for  **did:bid** identifiers.
 
 ## Specifications
 
