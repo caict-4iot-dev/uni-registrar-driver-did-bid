@@ -1,4 +1,4 @@
-# Dockerfile for caictdevelop/driver-did-bid
+# Dockerfile for caictdevelop/uni-registrar-driver-did-bid
 
 FROM node:14-alpine
 MAINTAINER guoshijie <guoshijie@caict.ac.cn>
