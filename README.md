@@ -13,7 +13,7 @@ This is a  [Universal Registrar](https://github.com/decentralized-identity/unive
 
 ```
 docker build -f ./docker/Dockerfile . -t caictdevelop/uni-registrar-driver-did-bid
-docker run -p 9080:9080 -d caictdevelop/uni-registrar-driver-did-bid
+docker run -p 9091:9091 -d caictdevelop/uni-registrar-driver-did-bid
 ```
 
 ## Driver Environment Variables

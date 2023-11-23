@@ -12,6 +12,6 @@ COPY . .
 
 # done
 
-EXPOSE 9080
+EXPOSE 9091
 
 CMD [ "node", "index.js" ]

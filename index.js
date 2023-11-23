@@ -4,7 +4,7 @@ var path = require('path');
 var http = require('http');
 
 var oas3Tools = require('oas3-tools');
-var serverPort = 9080;
+var serverPort = 9091;
 
 // swaggerRouter configuration
 var options = {
